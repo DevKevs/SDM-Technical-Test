@@ -1,0 +1,91 @@
+<mat-tab-group>
+  <mat-tab label="VEHICULOS">
+    <div class="container p-4" *ngIf="cars">
+      <div class="col mb-3">
+        <input placeholder="Marca" type="text" class="form-control" (input)="filter($event)">
+      </div>
+      <div class="Content">
+        <div class="panel border border-top-color" *ngFor="let i of cars | filter:search">
+          <div class="img-fluid" id="card-image" style="background-image: url({{i.img_url}});"></div>
+          <div class="detalle border-top-color">
+              <a href="" data-toggle="modal" data-target="#showCar" (click)="LoadData(i)">
+                  <h1 class="ml-2 pt-2" style="text-transform: capitalize;"><b>{{i.make}}</b></h1>
+              </a>
+              <div class="row mb-2">
+                <div class="col">
+                    <h2><span class="badge badge-danger d-inline ml-2" style="text-transform: uppercase;">{{i.model}}</span></h2>
+                </div>
+                <div class="col">
+                    <h3 class="d-inline float-right mr-2 text-success">$USD {{i.price}}</h3>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="notFound">
+      <div class="container">
+        <img src="../../assets/img/Error-404.webp" class="img-fluid" id="not-found" alt="">
+      </div>
+    </ng-container>
+  </mat-tab>
+
+  <mat-tab label="DETALLE">
+    <div class="container" *ngIf="cars">
+      <div class="p-4">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">Año</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Modelo</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Foto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of cars">
+              <td>{{i.id}}</td>
+              <td>{{i.year}}</td>
+              <td style="text-transform: capitalize;">{{i.make}}</td>
+              <td style="text-transform: uppercase;">{{i.model}}</td>
+              <td style="color: green;">$USD {{i.price}}</td>
+              <td><img style="width: 105px; height: 60px;" src="{{i.img_url}}" alt=""></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+
+<div class="modal fade" id="showCar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2 class="modal-title" id="exampleModalLabel">Detalles del Vehiculo</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <ng-container *ngIf="data_info">
+                <div id="car-img">
+                  <img src="{{data_info.img_url}}" class="img-fluid" style="border-radius:5px;" alt="auto">
+                </div>
+                <div class="container">
+                  <h2 style="text-align: center; text-transform: uppercase;"><b>{{data_info.make}} {{data_info.model}} {{data_info.year}}</b></h2>
+                  <hr>
+                  <h3>Caballos de fuerza: <span style="color: blue;">{{data_info.horsepower}} <i>HP</i></span></h3>
+                  <hr>
+                  <h3>Precio: <span style="color: green;">$USD {{data_info.price}}</span></h3>
+                </div>
+            </ng-container>
+          </div>
+          <div class="modal-footer">
+          </div>
+      </div>
+  </div>
+</div>

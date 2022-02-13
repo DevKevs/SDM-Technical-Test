@@ -1,0 +1,53 @@
+a:link, a:visited, a:active {
+  text-decoration:none;
+}
+#car-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  padding-bottom: 10px;
+}
+#not-found{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  padding-bottom: 10px;
+}
+#card-image{
+  height: 70%;
+  width: 100%;
+  background-size: 100% 100%;
+  border-radius: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.Content{
+  display:grid;
+  gap: 1rem;
+  grid-auto-rows: 27rem;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+}
+/* Styles for tab labels */
+.mat-tab-label {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  color: red;
+  font-weight: 700;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  color: red;
+  font-weight: 700;
+}
+
+/* Styles for the ink bar */
+.mat-ink-bar {
+  background-color: green;
+}
